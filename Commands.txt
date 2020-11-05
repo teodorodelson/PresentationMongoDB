@@ -1,0 +1,36 @@
+use demo
+
+db.createCollection("Students")
+
+db.Students.insertMany([{name: "Alex", age: 13, score:50},{name: "John", age: 14, score:30},{name: "Anna", age:13, score:44}])
+
+INSERT----------------------------------------------------
+db.Students.insert({name: "Daruis", age: 20, score:44})
+
+db.Students.insert({_id : 1 ,name: "James", age: 15, score:44},{name: "Abra", age: 13})
+
+QUERY---------------------------------------------------
+db.Students.find()
+
+db.Students.find().pretty()
+
+db.Students.find({age :13,score: 44})
+
+db.Students.find({score : {$gt:40}}).pretty()
+
+db.Students.find({score: {$not : {$eq:40}}})
+
+db.Students.find({},{score: -1, name : -1}) 
+
+db.Students.find({score: 44},{name: -1}) 
+
+db.Students.find({score: 44},{name: 0}) 
+
+db.Students.update({name: "Anna"},{$set: {score: 31}})
+
+db.Students.update({score : 33},{$set: {score:44},{multi:true}})
+
+REMOVE------------------------------------------------
+db.Students.remove({name: "Anna"})
+
+db.Students.remove({score: 44},1)
